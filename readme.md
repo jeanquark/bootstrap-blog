@@ -2,7 +2,7 @@
 
 [![Build Status](https://travis-ci.org/jeanquark/bootstrap-blog.svg?branch=master)](https://travis-ci.org/jeanquark/bootstrap-blog)
 
-Ever wanted to play around the famous [bootstrap blog](hhttps://startbootstrap.com/template-overviews/blog-home) live? This project is a fully functional blog application based on the bootstrap blog template and the bootstrap 3 [adminsb](http://startbootstrap.com/template-overviews/sb-admin) theme for the admin area. It is written in PHP using [Laravel 5.4](https://laravel.com) as a framework. It takes advantage of Laravel [built-in authentication](https://laravel.com/docs/5.4/authentication) and adds a minimal number of highly recommended external packages, so that you're free to expand the blog as you like! **No fancy visual effects, no weird plug-ins, no complex backend code, just a clean and expandable blogging plateform!**
+Ever wanted to play around the famous [bootstrap blog](hhttps://startbootstrap.com/template-overviews/blog-home) live? This project is a fully functional blog application based on the bootstrap blog template and the bootstrap 3 [adminsb](http://startbootstrap.com/template-overviews/sb-admin) theme for the admin area. It is written in PHP using [Laravel 5.4](https://laravel.com) as a framework. It takes advantage of Laravel [built-in authentication](https://laravel.com/docs/5.4/authentication) and adds a minimal number of highly recommended external packages, so that you're free to expand the blog as you like! **No fancy visual effects, no weird plug-ins, no complex backend code, just a clean and expandable blogging platform!**
 
 ![homepage](https://github.com/jeanquark/bootstrap-blog/raw/master/public/homepage.jpg "Homepage")
 
