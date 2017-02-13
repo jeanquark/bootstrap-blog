@@ -84,7 +84,7 @@
                 id = $(this).data('id');
                 $.ajax({
                     type: 'POST',
-                    url: "{{ URL::route('readStatus') }}",
+                    url: "{{ URL::route('admin.readStatus') }}",
                     data: {
                         '_token': $('input[name=_token]').val(),
                         'id': id

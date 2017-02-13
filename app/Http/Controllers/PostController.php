@@ -35,7 +35,6 @@ class PostController extends Controller
         return View::make('admin.post.index')->with('posts', $posts);
     }
 
-
     /**
      * Show the form for creating a new resource.
      *
@@ -47,7 +46,6 @@ class PostController extends Controller
 
         return View::make('admin.post.create')->with('tags', $tags);
     }
-
 
     /**
      * Store a newly created resource in storage.
@@ -84,29 +82,16 @@ class PostController extends Controller
 
             // Save tags
             $tags = Input::get('tags');
-            //dd($tags);
 
             if ($tags != NULL) {
                 $post->tags()->sync($tags);
-                // $post->tags()->attach($tags);
             } else {
                 $post->tags()->detach();
             }
 
-            /*if ($post->save()) {
-                $post_id = $post->id;
-
-                $post = Post::find($post_id);
-                if (Input::has('tags')) {   
-                    foreach ($tags as $tag) {     
-                        $post->tags()->attach($tag);
-                    }
-                }
-            }*/
-
             return Redirect::route('admin.post.index')->with('success', 'New Post created!');
 
-        } //end if
+        }
     }
 
     /**
@@ -184,7 +169,6 @@ class PostController extends Controller
             }
 
             $new_tags = Input::get('tags');
-            //dd($new_tags);
 
             if ($new_tags != NULL) {
             	$post->tags()->sync($new_tags);
@@ -196,7 +180,7 @@ class PostController extends Controller
             
             return Redirect::to('admin/post')->with('success', 'Successfully updated post!');
 
-        } // end else
+        }
     }
 
     /**
@@ -207,7 +191,6 @@ class PostController extends Controller
      */
     public function destroy($id)
     {
-        //dd('abc');
         $post = Post::findOrFail($id);
         $filename = $post->image_path;
 
@@ -222,10 +205,6 @@ class PostController extends Controller
         $post->delete();
 
         return redirect::to('admin/post')->with('success', 'Successfully deleted post!');
-
-        //$added = ['status' => 'success', 'msg' => 'Successfully deleted post.'];
-
-        //return $added;
     }
 
     /**
@@ -233,7 +212,7 @@ class PostController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function changeStatus() 
+    public function publishedStatus() 
     {
         $id = Input::get('id');
 

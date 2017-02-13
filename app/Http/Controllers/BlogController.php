@@ -94,7 +94,6 @@ class BlogController extends Controller
 
     }
 
-
     /**
      * Display the specified resource.
      *
@@ -122,7 +121,6 @@ class BlogController extends Controller
         	return back()->withErrors($validator)->withInput();
         }
     }
-
 
     /**
      * Store a newly created resource in storage.

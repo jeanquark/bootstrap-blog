@@ -79,7 +79,6 @@ class HomeController extends Controller
 
     }
 
-
     /**
      * Validate and process the contact form.
      *
@@ -124,22 +123,5 @@ class HomeController extends Controller
             return Redirect::route('contact')->with('success', 'Your message has been successfully sent. Thank you!');
 
         } //end if
-    }
-
-    /**
-     * Change contact status.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function readStatus() 
-    {
-        $id = Input::get('id');
-
-        $contact = Contact::findOrFail($id);
-
-        $contact->is_read = !$contact->is_read;
-        $contact->save();
-
-        return response()->json($contact);
     }
 }

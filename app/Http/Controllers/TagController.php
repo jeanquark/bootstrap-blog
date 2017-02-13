@@ -111,7 +111,7 @@ class TagController extends Controller
 
             return Redirect::to('admin/tag')->with('success', 'Successfully updated tag!');
 
-        } //end else
+        }
     }
 
     /**

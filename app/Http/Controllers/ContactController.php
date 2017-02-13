@@ -4,8 +4,9 @@ use Illuminate\Http\Request;
 use App\Contact;
 
 use Validator;
-use View;
 use Redirect;
+use Input;
+use View;
 
 class ContactController extends Controller
 {
@@ -40,30 +41,7 @@ class ContactController extends Controller
      */
     public function store(Request $request)
     {
-        $rules = array (
-            'name' => 'required|alpha|max:128',
-            'email' => 'required|email',
-            'message' => 'required|max:2048'
-        );
-
-        $validator = Validator::make(Input::all(), $this->rules);
-
-        if ($validator->fails()) {
-            return Redirect::to('contact')
-                ->withErrors($validator)
-                ->withInput();
-        } else {
-            $contact = new Contact;
-
-            $contact->name = Input::get('name');
-            $contact->email = Input::get('email');
-            $contact->message = Input::get('message');
-
-            $contact->save();
-
-            return Redirect::route('admin.contact.index')->with('success', 'New Contact created!');
-
-        }
+        
     }
 
     /**
@@ -98,11 +76,27 @@ class ContactController extends Controller
      */
     public function destroy($id)
     {
-         //dd('abc');
         $contact = Contact::findOrFail($id);
 
         $contact->delete();
 
         return redirect::to('admin/contact')->with('success', 'Successfully deleted message!');
+    }
+
+    /**
+     * Change contact read status.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function readStatus() 
+    {
+        $id = Input::get('id');
+
+        $contact = Contact::findOrFail($id);
+
+        $contact->is_read = !$contact->is_read;
+        $contact->save();
+
+        return response()->json($contact);
     }
 }

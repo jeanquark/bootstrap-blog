@@ -30,7 +30,6 @@ class UserController extends Controller
             'password_confirmation' => 'required',
     ];
 
-
     /**
      * Display a listing of the resource.
      *
@@ -52,7 +51,6 @@ class UserController extends Controller
     {
         return View::make('admin.user.create');
     }
-
 
     /**
      * Store a newly created resource in storage.

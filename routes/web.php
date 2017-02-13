@@ -23,11 +23,10 @@ Route::group(['middleware' => 'web'], function () {
     Route::get('about', array('as' => 'about', 'uses' => 'HomeController@about'));
     Route::get('services', array('as' => 'services', 'uses' => 'HomeController@services'));
 	Route::get('contact', array('as' => 'contact', 'uses' => 'HomeController@contact'));
-	Route::post('contact/changeStatus', array('as' => 'readStatus', 'uses' => 'HomeController@readStatus'));
 	Route::post('contact', array('as' => 'store_contact', 'uses' => 'HomeController@store_contact'));
 	Route::get('search', array('as' => 'search', 'uses' => 'BlogController@search'));
 	Route::get('post/{slug}', array('as' => 'post', 'uses' => 'BlogController@showPost'));
-	Route::post('posts/changeStatus', array('as' => 'changeStatus', 'uses' => 'PostController@changeStatus'));
+	Route::post('posts/publishedStatus', array('as' => 'publishedStatus', 'uses' => 'PostController@publishedStatus'));
 	Route::post('post/{slug}/comment', array('as' => 'post.comment', 'uses' => 'BlogController@comment'));
 	Route::post('post/{id}/reply', array('as' => 'post.reply', 'uses' => 'BlogController@reply'));
 	Route::get('tag/{slug}', array('as' => 'showTaggedPost', 'uses' => 'BlogController@showTaggedPost'));
@@ -44,5 +43,5 @@ Route::group(['middleware' => 'auth', 'as' => 'admin.'], function () {
 	Route::resource('admin/contact', 'ContactController', ['only' => [
 	    'index', 'create', 'show', 'destroy'
 	]]);
-
+	Route::post('admin/contact/readStatus', array('as' => 'readStatus', 'uses' => 'ContactController@readStatus'));
 });
