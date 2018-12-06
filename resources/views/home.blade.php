@@ -1,29 +1,3 @@
-<?php 
-    $comment = App\Comment::firstOrFail();
-    $post = $comment->post->firstOrFail();
-
-    $abc = App\Comment::where('is_published', '=', 1)->firstOrFail();
-    //dd($abc->post->slug);
-    //dd($post);
-    /*$tag = App\Tag::firstOrFail();
-    $post = $tag->posts()->firstOrFail();
-    dd($tag);
-    dd($post);*/
-
-    $post = App\Post::where('is_published', '=', 1)->firstOrFail();
-    $comment = $post->tags()->firstOrFail();
-    //dd($tag->id);
-
-    $post = DB::table('posts')
-        ->join('comments', 'posts.id', '=', 'comments.post_id')
-        ->where('posts.is_published', '=', 1)
-        ->where('comments.is_published', '=', 1)
-        ->first();
-    //dd($post->slug);
-    //dd('abc');
-?>
-
-
 @extends('layouts/layoutFront')
 
 @section('title', 'Homepage')
