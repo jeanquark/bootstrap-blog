@@ -19,7 +19,7 @@ class PostController extends Controller
     protected $rules = [		
 	 	'title' => ['required'],		
 	 	'text' => ['required'],	
-	 	'slug'  => ['required', 'min:2', 'alpha_dash'],
+	 	'slug'  => ['required', 'min:2', 'alpha_dash','unique:posts'],
         'image' => ['mimes:jpeg,jpg,png,JPG,PNG', 'image_size:>=900,>=300', 'max:10000']
  	];
 
