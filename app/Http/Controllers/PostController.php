@@ -16,13 +16,6 @@ use Form;
 
 class PostController extends Controller
 {
-    protected $rules = [		
-	 	'title' => ['required'],		
-	 	'text' => ['required'],	
-	 	'slug'  => ['required', 'min:2', 'alpha_dash'],
-        'image' => ['mimes:jpeg,jpg,png,JPG,PNG', 'image_size:>=900,>=300', 'max:10000']
- 	];
-
     /**
      * Display a listing of the resource.
      *
@@ -53,15 +46,8 @@ class PostController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {   
-        $validator = Validator::make(Input::all(), $this->rules);
-
-        if ($validator->fails()) {
-            return Redirect::to('admin/post/create')
-                ->withErrors($validator)
-                ->withInput();
-        } else {
+    public function store(Requests\StorePost $request)
+    {
             $post = new Post;
 
             $post->user_id = \Auth::user()->id;
@@ -90,8 +76,6 @@ class PostController extends Controller
             }
 
             return Redirect::route('admin.post.index')->with('success', 'New Post created!');
-
-        }
     }
 
     /**
@@ -132,15 +116,8 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Requests\UpdatePost $request, $id)
     {
-        $validator = Validator::make(Input::all(), $this->rules);
-
-        if ($validator->fails()) {
-            return Redirect::to('admin/post/' . $id . '/edit')
-                ->withErrors($validator)
-                ->withInput(Input::except('password'));
-        } else {
             $post = Post::findorFail($id);
 
             // Update title and slug
@@ -179,8 +156,6 @@ class PostController extends Controller
             $post->save();
             
             return Redirect::to('admin/post')->with('success', 'Successfully updated post!');
-
-        }
     }
 
     /**
